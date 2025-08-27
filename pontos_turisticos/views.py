@@ -1,3 +1,6 @@
 from django.shortcuts import render
+from .models import PontoTuristico
 
-# Create your views here.
+def listar_pontos(request):
+    pontos = PontoTuristico.objects.all()
+    return render(request, 'pontos_turisticos/listar.html', {'pontos': pontos})

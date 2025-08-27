@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Pontos</title>
+</head>
+<body>
+    <h1>Pontos Turísticos</h1>
+   {% for ponto in pontos %}
+    <div>
+        <h2>{{ ponto.nome }}</h2>
+        <p>{{ ponto.descricao }}</p>
+        <p>{{ ponto.categoria }} - {{ ponto.endereco }}</p>
+        {% if ponto.imagem %}
+            <img src="{{ ponto.imagem.url }}" alt="{{ ponto.nome }}" width="200">
+        {% endif %}
+
+        <!-- Iframe do Google Maps -->
+        <iframe
+            width="400"
+            height="300"
+            style="border:0"
+            loading="lazy"
+            allowfullscreen
+            referrerpolicy="no-referrer-when-downgrade"
+            src="https://www.google.com/maps?q={{ ponto.latitude }},{{ ponto.longitude }}&hl=pt-BR&z=15&output=embed">
+        </iframe>
+    </div>
+{% empty %}
+    <p>Nenhum ponto cadastrado.</p>
+{% endfor %}
+</body>
+</html>
